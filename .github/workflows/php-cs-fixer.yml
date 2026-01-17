@@ -20,7 +20,7 @@ jobs:
                 run: touch .env
 
             -   name: Install dependencies
-                run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
+                run: composer install --prefer-dist --no-progress --no-interaction --no-scripts
 
             -   name: Run PHP-CS-Fixer
                 run: vendor/bin/php-cs-fixer fix --diff --dry-run
