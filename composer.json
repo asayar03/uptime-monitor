@@ -9,12 +9,17 @@
         "ext-iconv": "*",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^3.6",
+        "dragonmantank/cron-expression": "^3.6",
         "symfony/console": "8.0.*",
         "symfony/dotenv": "8.0.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "8.0.*",
         "symfony/http-client": "8.0.*",
+        "symfony/messenger": "8.0.*",
+        "symfony/monolog-bundle": "^4.0",
+        "symfony/redis-messenger": "8.0.*",
         "symfony/runtime": "8.0.*",
+        "symfony/scheduler": "8.0.*",
         "symfony/yaml": "8.0.*"
     },
     "config": {

@@ -8,27 +8,33 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 readonly class PingService
 {
     public function __construct(
-        private HttpClientInterface $httpClient,
-    ) {
+        private HttpClientInterface              $httpClient,
+        private readonly ValidatePingDataService $validatePingDataService,
+    )
+    {
     }
 
-    public function ping(string $url): PageInformationValueObject
+    public function ping(
+        int     $monitoringConfigId,
+        string  $url,
+        ?string $requestMethod = 'GET'
+    ): PageInformationValueObject
     {
         if (!$this->validateUrl($url)) {
             throw new \InvalidArgumentException('The provided URL is not valid.');
         }
 
-        $response = $this->httpClient->request(
-            method: 'GET',
-            url: $url,
-        );
+        $response = $this->httpClient->request($requestMethod, $url, [
+            'timeout' => 10,
+        ]);
 
-        return PageInformationValueObject::fromData(
-            [
-                'statusCode' => $response->getStatusCode(),
-                'url'        => $url,
-            ]
-        );
+        $isSuccessful = $this->validatePingDataService->validate($monitoringConfigId, $response->getStatusCode());
+
+        return PageInformationValueObject::fromData([
+            'statusCode' => $response->getStatusCode(),
+            'url' => $url,
+            'isSuccessful' => $isSuccessful
+        ]);
     }
 
     private function validateUrl(string $url): bool

@@ -13,6 +13,15 @@ class PageInformationValueObject
         }
     }
 
+    public bool $isSuccessful {
+        get {
+            return $this->isSuccessful;
+        }
+        set {
+            $this->isSuccessful = $value;
+        }
+    }
+
     public string $url {
         get {
             return $this->url;
@@ -27,6 +36,7 @@ class PageInformationValueObject
         $instance = new self();
         $instance->statusCode = $data['statusCode'];
         $instance->url = $data['url'];
+        $instance->isSuccessful = $data['isSuccessful'];
         return $instance;
     }
 }
