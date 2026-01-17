@@ -16,6 +16,9 @@ jobs:
                     extensions: mbstring, intl, pdo, xml
                     coverage: none
 
+            -   name: Create empty .env file
+                run: touch .env
+
             -   name: Install dependencies
                 run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
 
