@@ -7,6 +7,16 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 readonly class PingService
 {
+    public const array VALID_HTTP_METHODS = [
+        'GET',
+        'POST',
+        'PUT',
+        'DELETE',
+        'HEAD',
+        'OPTIONS',
+        'PATCH',
+    ];
+
     public function __construct(
         private HttpClientInterface $httpClient,
         private readonly ValidatePingDataService $validatePingDataService,
@@ -18,6 +28,10 @@ readonly class PingService
         string $url,
         ?string $requestMethod = 'GET',
     ): PageInformationValueObject {
+        if (null === $requestMethod || !in_array(strtoupper($requestMethod), self::VALID_HTTP_METHODS, true)) {
+            $requestMethod = 'GET';
+        }
+
         if (!$this->validateUrl($url)) {
             throw new \InvalidArgumentException('The provided URL is not valid.');
         }
