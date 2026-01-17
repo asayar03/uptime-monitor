@@ -37,6 +37,7 @@ class PageInformationValueObject
         $instance->statusCode = $data['statusCode'];
         $instance->url = $data['url'];
         $instance->isSuccessful = $data['isSuccessful'];
+
         return $instance;
     }
 }

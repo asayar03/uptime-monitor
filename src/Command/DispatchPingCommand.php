@@ -4,7 +4,6 @@ namespace App\Command;
 
 use App\Repository\MonitoringConfigRepository;
 use App\Scheduler\Message\PingMonitoringEntryMessage;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,10 +16,9 @@ use Symfony\Component\Scheduler\Attribute\AsCronTask;
 class DispatchPingCommand extends Command
 {
     public function __construct(
-        private MessageBusInterface        $messageBus,
+        private MessageBusInterface $messageBus,
         private MonitoringConfigRepository $monitoringConfigRepositoryRepo,
-    )
-    {
+    ) {
         parent::__construct();
     }
 

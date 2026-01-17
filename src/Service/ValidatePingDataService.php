@@ -8,15 +8,13 @@ class ValidatePingDataService
 {
     public function __construct(
         private readonly MonitoringConfigRepository $monitoringConfigRepository,
-    )
-    {
-
+    ) {
     }
 
     public function validate(int $configId, int $statusCode): bool
     {
         $config = $this->monitoringConfigRepository->find($configId);
-        if ($config === null) {
+        if (null === $config) {
             return false;
         }
 

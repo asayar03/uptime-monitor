@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\MonitoringConfig;
-use App\Entity\MonitoringInfo;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,9 +11,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class MonitoringInfoController
 {
     public function __construct(
-        private readonly EntityManagerInterface $entityManager
-    )
-    {
+        private readonly EntityManagerInterface $entityManager,
+    ) {
     }
 
     #[Route('/monitoring-info/add/', name: 'monitoring_info_add', methods: ['POST'])]

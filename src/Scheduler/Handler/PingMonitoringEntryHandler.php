@@ -16,11 +16,10 @@ class PingMonitoringEntryHandler
 {
     public function __construct(
         private readonly MonitoringConfigRepository $monitoringConfigRepository,
-        private readonly PingService                $pingService,
-        private readonly EntityManagerInterface     $entityManager,
-        private readonly LoggerInterface            $logger,
-    )
-    {
+        private readonly PingService $pingService,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly LoggerInterface $logger,
+    ) {
     }
 
     public function __invoke(PingMonitoringEntryMessage $message): void
@@ -37,7 +36,7 @@ class PingMonitoringEntryHandler
             $monitoringConfig->getMonitoringconfigRequestmethod()
         );
 
-        $this->logger->info('Pinged URL: ' . $pingInfo->url . ' with status code: ' . $pingInfo->statusCode);
+        $this->logger->info('Pinged URL: '.$pingInfo->url.' with status code: '.$pingInfo->statusCode);
 
         $this->createEntryFromPingInfo($pingInfo, $message->getMonitoringConfigId());
     }

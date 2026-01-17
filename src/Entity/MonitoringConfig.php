@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: MonitoringConfigRepository::class)]
 class MonitoringConfig
 {
-
     private Collection $monitoringinfo;
 
     #[ORM\Id]

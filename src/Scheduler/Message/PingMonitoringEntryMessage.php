@@ -9,8 +9,7 @@ readonly class PingMonitoringEntryMessage
 {
     public function __construct(
         private int $monitoringConfigId,
-    )
-    {
+    ) {
     }
 
     public function getMonitoringConfigId(): int
