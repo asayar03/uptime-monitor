@@ -12,13 +12,13 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class PingMonitoringEntryHandler
+readonly class PingMonitoringEntryHandler
 {
     public function __construct(
-        private readonly MonitoringConfigRepository $monitoringConfigRepository,
-        private readonly PingService $pingService,
-        private readonly EntityManagerInterface $entityManager,
-        private readonly LoggerInterface $logger,
+        private MonitoringConfigRepository $monitoringConfigRepository,
+        private PingService $pingService,
+        private EntityManagerInterface $entityManager,
+        private LoggerInterface $logger,
     ) {
     }
 
@@ -33,7 +33,7 @@ class PingMonitoringEntryHandler
         $pingInfo = $this->pingService->ping(
             $monitoringConfig->getMonitoringconfigId(),
             $monitoringConfig->getMonitoringconfigUrl(),
-            $monitoringConfig->getMonitoringconfigRequestmethod()
+            $monitoringConfig->getMonitoringconfigRequestmethod(),
         );
 
         $this->logger->info('Pinged URL: '.$pingInfo->url.' with status code: '.$pingInfo->statusCode);

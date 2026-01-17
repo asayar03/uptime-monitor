@@ -16,8 +16,8 @@ use Symfony\Component\Scheduler\Attribute\AsCronTask;
 class DispatchPingCommand extends Command
 {
     public function __construct(
-        private MessageBusInterface $messageBus,
-        private MonitoringConfigRepository $monitoringConfigRepositoryRepo,
+        private readonly MessageBusInterface $messageBus,
+        private readonly MonitoringConfigRepository $monitoringConfigRepositoryRepo,
     ) {
         parent::__construct();
     }

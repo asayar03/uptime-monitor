@@ -4,10 +4,10 @@ namespace App\Service;
 
 use App\Repository\MonitoringConfigRepository;
 
-class ValidatePingDataService
+readonly class ValidatePingDataService
 {
     public function __construct(
-        private readonly MonitoringConfigRepository $monitoringConfigRepository,
+        private MonitoringConfigRepository $monitoringConfigRepository,
     ) {
     }
 
