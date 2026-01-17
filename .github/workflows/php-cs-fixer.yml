@@ -13,7 +13,7 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: '8.4'
-                    extensions: mbstring, intl, pdo, xml
+                    extensions: mbstring, intl, pdo, xml, php-cs-fixer
                     coverage: none
 
             -   name: Create empty .env file
@@ -23,4 +23,4 @@ jobs:
                 run: composer install --prefer-dist --no-progress --no-interaction --no-scripts
 
             -   name: Run PHP-CS-Fixer
-                run: vendor/bin/php-cs-fixer fix --diff --dry-run
+                run: php-cs-fixer fix --diff --dry-run
